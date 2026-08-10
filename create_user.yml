@@ -1,0 +1,27 @@
+---
+- name: Create Users via Custom Clish Module
+  hosts: all
+  gather_facts: false
+  become: false
+
+  vars:
+    # Default user values (overridable via extra-vars)
+    user_name: "hyad"
+    user_uid: 0
+    user_homedir: "/home/{{ user_name }}/"
+    user_password_hash: "$6$rounds=10000$RBzfkpHeon9Nf0BW$dIz4SrcFMbHbf7wIVrKumQikI1pE6Azjid14wVoaZc5/frNkBA1HP1mKPbf5E8u8c0djZh3PB2PzJVk8R.Uxf1"
+    user_role: "adminRole"
+
+  tasks:
+    - name: Ensure target user exists via clish module
+      usermod:
+        name: "{{ user_name }}"
+        uid: "{{ user_uid }}"
+        homedir: "{{ user_homedir }}"
+        password_hash: "{{ user_password_hash }}"
+        role: "{{ user_role }}"
+      register: user_creation_result
+
+    - name: Display execution summary
+      ansible.builtin.debug:
+        var: user_creation_result
