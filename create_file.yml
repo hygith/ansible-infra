@@ -1,0 +1,11 @@
+---
+- name: Create testing.txt in /home/admin using custom module
+  hosts: all
+  become: false  # Disabled sudo
+  tasks:
+    - name: Create testing.txt using custom module
+      create_testing_file:
+        dest: /home/admin/testing.txt
+        content: |
+          This file was created by Ansible.
+        mode: '0644'
