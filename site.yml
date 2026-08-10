@@ -1,0 +1,6 @@
+---
+- name: Baseline Staging Test
+  hosts: webservers
+  tasks:
+    - name: Ping host
+      ansible.builtin.ping:

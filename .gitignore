@@ -1,0 +1,15 @@
+# Ansible temporary & retry files
+*.retry
+*.log
+.ansible/
+*.swp
+*~
+
+# Sensitive key files and vault passwords
+*.pem
+*.key
+id_rsa*
+.vault_password
+
+# OS files
+.DS_Store
